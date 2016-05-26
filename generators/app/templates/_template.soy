@@ -1,0 +1,34 @@
+{namespace <%= soyBlockProvide %>}
+
+/**
+ * Template for Pablo <%= blockDescriptionName %> block
+ *
+ * @param? params {{
+ *     ?data: {
+ *     }
+ * }}
+ * @constructor
+ * @extends cl.iControl.Template
+ */
+{template .<%= soyConstructorTemplateName %>}
+    {call .init data="all" /}
+{/template}
+
+/**
+ * @override
+ */
+{template .rootClass}
+    <%= name %>
+{/template}
+
+/**
+ * @param? params {{
+ *     ?data: {
+ *     }
+ * }}
+ * @override
+ */
+{template .body}
+
+{/template}
+
