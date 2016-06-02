@@ -24,7 +24,7 @@ goog.inherits(<%= controlBlockProvide %>, cl.iControl.Control);
 
 goog.scope(function() {
 
-  var control = <%= controlBlockProvide %>;
+  var Control = <%= controlBlockProvide %>;
 
 
   /**
@@ -32,7 +32,7 @@ goog.scope(function() {
    * @enum {string}
    * @const
    */
-  control.Event = {
+  Control.Event = {
   };
 
 
@@ -40,7 +40,7 @@ goog.scope(function() {
    * @override
    * @param {Element} element
    */
-  control.prototype.decorateInternal = function(element) {
+  Control.prototype.decorateInternal = function(element) {
     goog.base(this, 'decorateInternal', element);
   };
 
@@ -48,7 +48,7 @@ goog.scope(function() {
   /**
    * @override
    */
-  control.prototype.enterDocument = function() {
+  Control.prototype.enterDocument = function() {
     goog.base(this, 'enterDocument');
   };
 
