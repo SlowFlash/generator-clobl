@@ -1,7 +1,7 @@
-{namespace <%= soyBlockProvide %>}
+{namespace <%= blockNamespace %>.Template}
 
 /**
- * Template for Pablo <%= blockDescriptionName %> block
+ * Template for <%= blockNamespace %> block
  *
  * @param? params {{
  *     ?data: {
@@ -10,7 +10,7 @@
  * @constructor
  * @extends cl.iControl.Template
  */
-{template .<%= soyConstructorTemplateName %>}
+{template .<%= blockName %>}
     {call .init data="all" /}
 {/template}
 
@@ -18,7 +18,7 @@
  * @override
  */
 {template .rootClass}
-    <%= name %>
+
 {/template}
 
 /**
@@ -27,4 +27,3 @@
 {template .body}
 
 {/template}
-

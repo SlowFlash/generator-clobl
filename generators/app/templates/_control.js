@@ -1,46 +1,33 @@
-goog.provide('<%= controlBlockProvide %>');
+goog.provide('<%= blockNamespace %>.<%= blockName %>');
 
 goog.require('cl.iControl.Control');
-goog.require('goog.ui.Component');
 
 
 
 /**
- * Pablo <%= blockDescriptionName %> block
 
  * @param {cl.iControl.View} view
  * @param {goog.dom.DomHelper=} opt_domHelper
  * @constructor
  * @extends {cl.iControl.Control}
  */
-<%= controlBlockProvide %> = function(view, opt_domHelper) {
+<%= blockNamespace %>.<%= blockName %> = function(view, opt_domHelper) {
   goog.base(this, view, opt_domHelper);
 
-  this.setSupportedState(goog.ui.Component.State.ALL, false);
-  this.setAllowTextSelection(false);
-
 };
-goog.inherits(<%= controlBlockProvide %>, cl.iControl.Control);
+goog.inherits(<%= blockNamespace %>.<%= blockName %>, cl.iControl.Control);
 
 goog.scope(function() {
 
-  var Control = <%= controlBlockProvide %>;
-
-
-  /**
-   * List of <%= blockDescriptionName %> events
-   * @enum {string}
-   * @const
-   */
-  Control.Event = {
-  };
+  var <%= blockName %> = <%= blockNamespace %>.<%= blockName %>,
+      View = <%= blockNamespace %>.View;
 
 
   /**
    * @override
    * @param {Element} element
    */
-  Control.prototype.decorateInternal = function(element) {
+  <%= blockName %>.prototype.decorateInternal = function(element) {
     goog.base(this, 'decorateInternal', element);
   };
 
@@ -48,7 +35,7 @@ goog.scope(function() {
   /**
    * @override
    */
-  Control.prototype.enterDocument = function() {
+  <%= blockName %>.prototype.enterDocument = function() {
     goog.base(this, 'enterDocument');
   };
 

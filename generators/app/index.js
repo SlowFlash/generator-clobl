@@ -14,32 +14,14 @@ module.exports = yeoman.Base.extend({
 
     var prompts = [{
       type: 'input',
-      name: 'controlBlockProvide',
-      message: 'Что писать в Provide у контрола? (напр. pb.bPbHeader.PbHeader)',
+      name: 'blockNamespace',
+      message: 'Namespace (напр. aa.lActiveAge.bHeader)',
       //Defaults to the project's folder name if the input is skipped
       default: this.appname
     }, {
       type: 'input',
-      name: 'blockDescriptionName',
-      message: 'Как назвать блок в комментах? (напр. Header)',
-      //Defaults to the project's folder name if the input is skipped
-      default: this.appname
-    }, {
-      type: 'input',
-      name: 'viewBlockProvide',
-      message: 'Что писать в Provide у View? (напр. pb.bPbHeader.View)',
-      //Defaults to the project's folder name if the input is skipped
-      default: this.appname
-    }, {
-      type: 'input',
-      name: 'soyBlockProvide',
-      message: 'Что писать в Provide у Soy? (напр. pb.bPbHeader.Template)',
-      //Defaults to the project's folder name if the input is skipped
-      default: this.appname
-    }, {
-      type: 'input',
-      name: 'soyConstructorTemplateName',
-      message: 'Как назвать конструктор Soy? (напр. header)',
+      name: 'blockName',
+      message: 'Название блока? (напр. Header)',
       //Defaults to the project's folder name if the input is skipped
       default: this.appname
     }];
@@ -55,31 +37,27 @@ module.exports = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('_control.js'),
       this.destinationPath(this.blockname + '.js'), {
-        controlBlockProvide: this.props.controlBlockProvide,
-        blockDescriptionName: this.props.blockDescriptionName
+        blockNamespace: this.props.blockNamespace,
+        blockName: this.props.blockName
       }
     );
     this.fs.copyTpl(
       this.templatePath('_view.js'),
       this.destinationPath('view.js'), {
-        viewBlockProvide: this.props.viewBlockProvide,
-        blockDescriptionName: this.props.blockDescriptionName,
-        name: this.blockname
+          blockNamespace: this.props.blockNamespace,
+          blockName: this.props.blockName
       }
     );
     this.fs.copyTpl(
       this.templatePath('_template.soy'),
       this.destinationPath(this.blockname + '.soy'), {
-        soyBlockProvide: this.props.soyBlockProvide,
-        blockDescriptionName: this.props.blockDescriptionName,
-        soyConstructorTemplateName: this.props.soyConstructorTemplateName,
-        name: this.blockname
+          blockNamespace: this.props.blockNamespace,
+          blockName: this.props.blockName.toLowerCase()
       }
     );
     this.fs.copyTpl(
       this.templatePath('_styles.scss'),
       this.destinationPath(this.blockname + '.scss'), {
-        name: this.blockname
       }
     );
   }

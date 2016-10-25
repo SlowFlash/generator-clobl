@@ -1,11 +1,11 @@
-goog.provide('<%= viewBlockProvide %>');
+goog.provide('<%= blockNamespace %>.View');
 
 goog.require('cl.iControl.View');
 
 
 
 /**
- * View for <%= blockDescriptionName %> block
+ * View for <%= blockNamespace %> block
  *
  * @param {Object=} opt_params
  * @param {string=} opt_type
@@ -13,24 +13,14 @@ goog.require('cl.iControl.View');
  * @constructor
  * @extends {cl.iControl.View}
  */
-<%= viewBlockProvide %> = function(opt_params, opt_type, opt_modifier) {
+<%= blockNamespace %>.View = function(opt_params, opt_type, opt_modifier) {
   goog.base(this, opt_params, opt_type, opt_modifier);
 };
-goog.inherits(<%= viewBlockProvide %>, cl.iControl.View);
+goog.inherits(<%= blockNamespace %>.View, cl.iControl.View);
 
 goog.scope(function() {
 
-  var View = <%= viewBlockProvide %>;
-
-
-  /**
-   * List of CSS classes
-   * @enum {string}
-   * @const
-   */
-  View.CssClass = {
-    ROOT: '<%= name %>'
-  };
+  var View = <%= blockNamespace %>.View;
 
 
   /**
