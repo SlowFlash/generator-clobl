@@ -25,6 +25,13 @@ goog.scope(function() {
 
   var View = <%= blockNamespace %>.View;
 
+  /**
+   * Css class enum
+   * @enum {string}
+   */
+  View.CssClass = {
+      ROOT: '<%= rootClass %>'
+  };
 
   /**
    * @override
@@ -32,6 +39,10 @@ goog.scope(function() {
    */
   View.prototype.decorateInternal = function(element) {
     goog.base(this, 'decorateInternal', element);
+
+    this.dom.root = this.getElementByClass(
+        View.CssClass.ROOT
+    );
   };
 
 

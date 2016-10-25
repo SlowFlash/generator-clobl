@@ -16,25 +16,21 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'blockNamespace',
       message: 'Namespace (напр. aa.lActiveAge.bHeader)',
-      //Defaults to the project's folder name if the input is skipped
       default: this.appname
     }, {
       type: 'input',
       name: 'blockName',
       message: 'Название блока (напр. Header)',
-      //Defaults to the project's folder name if the input is skipped
       default: this.appname
     }, {
       type: 'input',
       name: 'rootClass',
       message: 'Root class (напр. b-header)',
-      //Defaults to the project's folder name if the input is skipped
       default: this.appname
     }, {
       type: 'confirm',
       name: 'isPage',
       message: 'Page?',
-      //Defaults to the project's folder name if the input is skipped
       default: false
     }
     // , {
@@ -73,7 +69,8 @@ module.exports = yeoman.Base.extend({
         this.templatePath('i-page/_view.js'),
         this.destinationPath('view.js'), {
             blockNamespace: this.props.blockNamespace,
-            blockName: this.props.blockName
+            blockName: this.props.blockName,
+            rootClass: this.props.rootClass
         }
       );
       this.fs.copyTpl(
@@ -96,7 +93,8 @@ module.exports = yeoman.Base.extend({
         this.templatePath('default/_view.js'),
         this.destinationPath('view.js'), {
             blockNamespace: this.props.blockNamespace,
-            blockName: this.props.blockName
+            blockName: this.props.blockName,
+            rootClass: this.props.rootClass
         }
       );
       this.fs.copyTpl(
