@@ -23,11 +23,6 @@ module.exports = yeoman.Base.extend({
       message: 'Название блока (напр. Header)',
       default: this.appname
     }, {
-      type: 'input',
-      name: 'rootClass',
-      message: 'Root class (напр. b-header)',
-      default: this.appname
-    }, {
       type: 'confirm',
       name: 'isPage',
       message: 'Page?',
@@ -57,60 +52,48 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function () {
+    var dir_control = '_control.js',
+        dir_view = '_view.js',
+        dir_template = '_template.soy';
+
     if (this.props.isPage) {
-      this.fs.copyTpl(
-      this.templatePath('i-page/_control.js'),
-      this.destinationPath(this.blockname + '.js'), {
-        blockNamespace: this.props.blockNamespace,
-        blockName: this.props.blockName
-      }
-      );
-      this.fs.copyTpl(
-        this.templatePath('i-page/_view.js'),
-        this.destinationPath('view.js'), {
-            blockNamespace: this.props.blockNamespace,
-            blockName: this.props.blockName,
-            rootClass: this.props.rootClass
-        }
-      );
-      this.fs.copyTpl(
-        this.templatePath('i-page/_template.soy'),
-        this.destinationPath(this.blockname + '.soy'), {
-            blockNamespace: this.props.blockNamespace,
-            blockName: this.props.blockName.toLowerCase(),
-            rootClass: this.props.rootClass
-        }
-      );
+        dir_control = 'i-page/' + dir_control;
+        dir_view = 'i-page/' + dir_view;
+        dir_template = 'i-page/' + dir_template;
     } else {
-      this.fs.copyTpl(
-      this.templatePath('default/_control.js'),
-      this.destinationPath(this.blockname + '.js'), {
-        blockNamespace: this.props.blockNamespace,
-        blockName: this.props.blockName
-      }
-      );
-      this.fs.copyTpl(
-        this.templatePath('default/_view.js'),
+        dir_control = 'default/' + dir_control;
+        dir_view = 'default/' + dir_view;
+        dir_template = 'default/' + dir_template;
+    }
+
+    this.fs.copyTpl(
+        this.templatePath(dir_control),
+        this.destinationPath(this.blockname + '.js'), {
+            blockNamespace: this.props.blockNamespace,
+            blockName: this.props.blockName
+        }
+    );
+    this.fs.copyTpl(
+        this.templatePath(dir_view),
         this.destinationPath('view.js'), {
             blockNamespace: this.props.blockNamespace,
             blockName: this.props.blockName,
-            rootClass: this.props.rootClass
+            rootClass: this.blockname
         }
-      );
-      this.fs.copyTpl(
-        this.templatePath('default/_template.soy'),
+    );
+    this.fs.copyTpl(
+        this.templatePath(dir_template),
         this.destinationPath(this.blockname + '.soy'), {
             blockNamespace: this.props.blockNamespace,
             blockName: this.props.blockName.toLowerCase(),
-            rootClass: this.props.rootClass
+            rootClass: this.blockname
         }
-      );
-    }
+    );
     this.fs.copyTpl(
-      this.templatePath('_styles.scss'),
-      this.destinationPath(this.blockname + '.scss'), {
-        rootClass: this.props.rootClass
-      }
+        this.templatePath('_styles.scss'),
+        this.destinationPath(this.blockname + '.scss'), {
+            rootClass: this.blockname
+        }
     );
   }
 });
